@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import * as Font from 'expo-font';
+
+
+import HomeScreen from './Screens/Home';
+import LoginScreen from './Screens/Login';
+
+const Stack = createStackNavigator();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    useEffect(() => {
+        async function loadFonts() {
+            await Font.loadAsync({
+                'inter-regular': require('./assets/fonts/Inter.ttf'),
+            });
+        }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+        loadFonts();
+    }, []);
+
+    return ( < NavigationContainer >
+        <
+        stack.Navigator initialRouteName = "Home" >
+        <
+        Stack.Screen name = "Home"
+        component = { HomeScreen }
+        />  <
+        Stack.Screen name = "Login"
+        component = { LoginScreen }
+        />  <
+        /stack.Navigator>  <
+        /NavigationContainer>
+    );
+}
